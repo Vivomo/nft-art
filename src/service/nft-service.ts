@@ -56,8 +56,15 @@ export const mintNFT = async (tokenUri:String):Promise<{success:boolean, tokenId
     let tx = await transaction.wait(1);
     let event = tx.events[0];
     let value = event.args[2];
-    console.log(value);
     let tokenId = value.toNumber();
-    alert(tokenId)
+    console.log(value, tokenId);
     return {success:true, tokenId};
+}
+
+export const ownedTypedNFT = async (type: string): Promise<{ success: boolean, data: Nft[] }> => {
+    let { success, data } = await owned();
+    if (!success)
+        return { success, data }
+    let rst = data.filter((e: Nft) => e.type === type);
+    return { success: true, data: rst };
 }

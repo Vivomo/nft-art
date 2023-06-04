@@ -17,7 +17,7 @@ const props = {
 function NftMintor() {
 
     const navigate = useNavigate()
-    const [meta, updateMeta] = useState<NftMeta>({ name: "", descriptipn: "", imageUri: "" })
+    const [meta, updateMeta] = useState<NftMeta>({ name: "", description: "", imageUri: "", uri: '', type: '' })
     const [uri, setUri] = useState("")
     const store = async (file: any) => {
         try {
@@ -68,7 +68,7 @@ function NftMintor() {
                 <Input.TextArea
                     placeholder="Asset Description"
                     className={styles.NftField}
-                    onChange={(e) => { updateMeta({ ...meta, descriptipn: e.target.value }) }}
+                    onChange={(e) => { updateMeta({ ...meta, description: e.target.value }) }}
                 />
 
                 <Input

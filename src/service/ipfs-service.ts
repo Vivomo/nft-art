@@ -10,7 +10,7 @@ const ipfs =  ipfsHttpClient({
 export const storeMeta = async (data:any) => {
 
     const json = JSON.stringify(data);
-    alert(json);
+    console.log(json);
     try {
         const added = await ipfs.add(json);
         alert(added.path)
@@ -24,4 +24,9 @@ export const addToIpfs = async (entity:any) : Promise<string> => {
     const cid = added.path
     const rst = IPFS.url_prefix + cid;
     return rst;
+}
+
+export const readArticle = async (uri:string): Promise<string> => {
+    const res = await axios.get(uri);
+    return res.data
 }

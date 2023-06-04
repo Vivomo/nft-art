@@ -24,3 +24,9 @@ npx hardhat run scripts/deploy.js
 
 * [https://docs.ethers.org/](https://docs.ethers.org/)
 
+## start
+```text
+npx hardhat node
+ipfs daemon
+npm run hdeploy
+```
