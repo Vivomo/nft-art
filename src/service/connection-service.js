@@ -3,7 +3,6 @@ import { messageBox } from "./message-service"
 import { configuration } from '../config'
 
 export const connectOnce = async () => {
-  debugger;
   let provider = new ethers.providers.Web3Provider(window.ethereum)
   await provider.send("eth_requestAccounts", []);
   let signer = provider.getSigner();

@@ -2,6 +2,7 @@ import { useState } from "react"
 
 import { Button, Checkbox, Form, Input } from 'antd';
 import { addToIpfs } from "../../service/ipfs-service";
+import { mintNFT } from "../../service/nft-service";
 import { NftMeta } from "../../service/types";
 import { useNavigate } from "react-router-dom"
 import { messageBox } from "../../service/message-service";
@@ -31,8 +32,27 @@ function NftMintor() {
         }
     }
     const mint = async () => {
+        try {
+            const data: NftMeta = { ...meta, imageUri: uri }
+            const json = JSON.stringify(data);
+            const metauri = await addToIpfs(json)
+            messageBox("success", "", metauri)
+            const { success, tokenId } = await mintNFT(metauri);
 
+            if (success && tokenId) {
+                messageBox("success", "", tokenId?.toString())
+                navigate("/personal/collectible-browse")
+                // router.push("/mynft")
+            } else {
+                messageBox("danger", "", "mint failed")
+            }
+        } catch (error) {
+            if (error instanceof Error)
+                messageBox("danger", "", error.message)
+        }
     }
+
+
     return (
         <div className={styles.CreatorWrapper}>
             <div className={styles.CreatorContainer}>
@@ -55,9 +75,7 @@ function NftMintor() {
                     type='file'
                     placeholder="Asset Image"
                     className={styles.NftField}
-                    onChange={(e) => {
-                        e.target.files&&store(e.target.files[0])
-                    }}
+                    onChange={(e) => { e.target.files&&store(e.target.files[0]) }}
                 />
 
 
