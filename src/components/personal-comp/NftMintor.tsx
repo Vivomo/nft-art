@@ -17,12 +17,10 @@ const props = {
 function NftMintor() {
 
     const navigate = useNavigate()
-    const [meta, updateMeta] = useState<NftMeta>({ name: "", description: "", imageUri: "", uri: '', type: '' })
+    const [meta, updateMeta] = useState<NftMeta>({ name: "", description: "", imageUri: "", uri: '', type: 'image' })
     const [uri, setUri] = useState("")
     const store = async (file: any) => {
         try {
-
-
             const imageuri = await addToIpfs(file)
             messageBox("success", "", imageuri)
             setUri(imageuri);

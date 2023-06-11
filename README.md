@@ -30,3 +30,14 @@ npx hardhat node
 ipfs daemon
 npm run hdeploy
 ```
+
+```text
+arweave
+
+npx arlocal
+
+登录 arweave.app 创建钱包
+setting gateway http://127.0.0.1:1984
+设置AR币 http://127.0.0.1:1984/mint/<address>/<number>
+
+```
