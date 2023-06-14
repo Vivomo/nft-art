@@ -46,28 +46,13 @@ function ArticleScratch() {
     }
 
     return (
+      <Table
+        columns={columns}
+        dataSource={articles}
 
-        <div>
-
-
-            <Table
-                onRow={record => {
-                    return {
-                        onClick: event => { console.log(record) }, // 点击行
-                        onDoubleClick: event => { },
-                        onContextMenu: event => { },
-                        onMouseEnter: event => { }, // 鼠标移入行
-                        onMouseLeave: event => { },
-                    };
-                }}
-
-                columns={columns}
-                dataSource={articles}
-
-                bordered
-            >
-            </Table>
-        </div>
+        bordered
+      >
+      </Table>
     )
 }
 export default ArticleScratch

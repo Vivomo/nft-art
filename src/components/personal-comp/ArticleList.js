@@ -31,35 +31,18 @@ function ArticleList() {
         let {success, data} = await ownedTypedNFT("article");
         let rdata = data.map((e, i)=>({index:i, entity:e, ...e}))
         setArticles(rdata)
-        console.log("mounted!")
     }
     const view = async (entity, event)=>{
         let content = await readArticle(entity.uri)
         navigate("/personal/article-read", { state: { title:entity.name,content}})
     }
     return (
-
-        <div>
-
-
-            <Table
-                onRow={record => {
-                    return {
-                        onClick: event => { console.log(record) }, // 点击行
-                        onDoubleClick: event => { },
-                        onContextMenu: event => { },
-                        onMouseEnter: event => { }, // 鼠标移入行
-                        onMouseLeave: event => { },
-                    };
-                }}
-
-                columns={columns}
-                dataSource={articles}
-
-                bordered
-            >
-            </Table>
-        </div>
+      <Table
+        columns={columns}
+        dataSource={articles}
+        bordered
+      >
+      </Table>
     )
 }
 export default ArticleList

@@ -15,8 +15,8 @@ const Example = () => {
   const editor = useRef(null);
   const location = useLocation();
 
-  const [content, setContent] = useState(location.state.title);
-  const [title, setTitle] = useState(location.state.content);
+  const [content, setContent] = useState(location.state?.title);
+  const [title, setTitle] = useState(location.state?.content);
   const {
     token: { colorBgContainer },
   } = theme.useToken();
