@@ -1,11 +1,9 @@
 import React from 'react';
 import '../index.css';
-import { LaptopOutlined, NotificationOutlined, UserOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
-import { Breadcrumb, Layout, Menu, theme } from 'antd';
+import { Layout, Menu } from 'antd';
 import Home from './Home';
 
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import Connect from './Connect';
 import ConnectArweave from './ConnectArweave';
 
@@ -14,21 +12,12 @@ import Personal from './Personal';
 import NftMarket from './NftMarket';
 
 
-const { Header, Content, Sider } = Layout;
-const items1: MenuProps['items'] = ['1', '2', '3'].map((key) => ({
-    key,
-    label: `nav ${key}`,
-}));
+const { Header } = Layout;
 
-type Props = {
 
-    children: JSX.Element,
-};
 
 export default function TopLayout() {
-    const {
-        token: { colorBgContainer },
-    } = theme.useToken();
+
 
     return (
         <Layout>

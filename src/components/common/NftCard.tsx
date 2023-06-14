@@ -6,13 +6,11 @@ const {Meta} = Card;
 function NftCard({nft}: { nft: Nft }) {
     return (
         <Card
-
             hoverable
             style={{width: 240}}
-            cover={nft.imageUri && <img alt="example" src={nft.imageUri}/>}
+            cover={nft.imageUri && <img alt={nft.name} src={nft.imageUri}/>}
         >
             <Meta title={nft.name} description={nft.description}/>
-
         </Card>
     )
 }

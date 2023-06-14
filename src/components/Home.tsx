@@ -3,11 +3,11 @@ import '../index.css';
 
 import { EditOutlined, PoundOutlined, UserOutlined } from '@ant-design/icons';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
-import { BrowserRouter, Routes, Route, Outlet, Link } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import ArticleBrowser from './home-comp/ArticleBrowser';
 import MarketBrowser from './home-comp/MarketBrowser';
 import StarBrowser from './home-comp/StarBrowser';
-const { Header, Content, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 
 

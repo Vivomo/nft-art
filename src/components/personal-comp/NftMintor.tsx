@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Input } from 'antd';
 import { addToIpfs } from "../../service/ipfs-service";
 import { mintNFT } from "../../service/nft-service";
 import { NftMeta } from "../../service/types";
@@ -78,9 +78,9 @@ function NftMintor() {
                     }}
                 />
 
-
-                <img width="350" src={uri} className={styles.NftImage} alt="NFT图片"/>
-
+                {
+                    uri && <img width="350" src={uri} className={styles.NftImage} alt="NFT图片"/>
+                }
 
                 <Button type="primary" onClick={mint}>
                     铸币

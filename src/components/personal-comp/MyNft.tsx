@@ -15,7 +15,6 @@ function MyNft() {
         if (ns.success) {
             setNfts(ns.data)
         }
-        console.log("mounted!")
     }
     return (
         <div className="main">

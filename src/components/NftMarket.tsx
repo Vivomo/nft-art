@@ -2,13 +2,13 @@ import React from 'react';
 import '../index.css';
 import { DownOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
-import { Breadcrumb, Layout, Menu, theme, message, Dropdown } from 'antd';
+import { Layout, theme, message, Dropdown } from 'antd';
 
 import { AudioOutlined } from '@ant-design/icons';
 import { Input, Space } from 'antd';
 
 const { Search } = Input;
-const { Header, Content, Sider } = Layout;
+const { Content } = Layout;
 
 
 const onSearch = (value: string) => console.log(value);
