@@ -6,22 +6,19 @@ import { mintNFT } from "../../service/nft-service";
 import { NftMeta } from "../../service/types";
 import { useNavigate } from "react-router-dom"
 import { messageBox } from "../../service/message-service";
-import styles from './NftMintor.module.css'
-const props = {
-    name: 'file',
-    action: 'https://www.mocky.io/v2/5cc8019d300000980a055e76',
-    headers: {
-        authorization: 'authorization-text',
-    }
-}
+import { storeMeta, storeNftImage } from '../../service/arweave-service';
+import styles from './NftMintor.module.css';
+
+
 function NftMintor() {
 
     const navigate = useNavigate()
-    const [meta, updateMeta] = useState<NftMeta>({ name: "", description: "", imageUri: "", uri: '', type: 'image' })
+    const [meta, updateMeta] = useState<NftMeta>({name: "", description: "", imageUri: "", uri: '', type: 'image'})
     const [uri, setUri] = useState("")
     const store = async (file: any) => {
         try {
-            const imageuri = await addToIpfs(file)
+            // const imageuri = await addToIpfs(file)
+            const imageuri = await storeNftImage(file)
             messageBox("success", "", imageuri)
             setUri(imageuri);
         } catch (error) {
@@ -31,11 +28,12 @@ function NftMintor() {
     }
     const mint = async () => {
         try {
-            const data: NftMeta = { ...meta, imageUri: uri }
+            const data: NftMeta = {...meta, imageUri: uri}
             const json = JSON.stringify(data);
-            const metauri = await addToIpfs(json)
+            // const metauri = await addToIpfs(json)
+            const metauri = await storeMeta(json)
             messageBox("success", "", metauri)
-            const { success, tokenId } = await mintNFT(metauri);
+            const {success, tokenId} = await mintNFT(metauri);
 
             if (success && tokenId) {
                 messageBox("success", "", tokenId?.toString())
@@ -58,7 +56,7 @@ function NftMintor() {
                 <Input
                     placeholder="Asset Name"
                     className={styles.NftField}
-                    onChange={(e) => updateMeta({ ...meta, name: e.target.value })}
+                    onChange={(e) => updateMeta({...meta, name: e.target.value})}
 
                 />
 
@@ -66,24 +64,27 @@ function NftMintor() {
                 <Input.TextArea
                     placeholder="Asset Description"
                     className={styles.NftField}
-                    onChange={(e) => { updateMeta({ ...meta, description: e.target.value }) }}
+                    onChange={(e) => {
+                        updateMeta({...meta, description: e.target.value})
+                    }}
                 />
 
                 <Input
                     type='file'
                     placeholder="Asset Image"
                     className={styles.NftField}
-                    onChange={(e) => { e.target.files&&store(e.target.files[0]) }}
+                    onChange={(e) => {
+                        e.target.files && store(e.target.files[0])
+                    }}
                 />
 
 
                 <img width="350" src={uri} className={styles.NftImage} alt="NFT图片"/>
 
 
-                <Button type="primary" onClick={mint} >
+                <Button type="primary" onClick={mint}>
                     铸币
-                </Button >
-
+                </Button>
 
 
             </div>

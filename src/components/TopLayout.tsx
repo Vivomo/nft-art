@@ -7,6 +7,7 @@ import Home from './Home';
 
 import { Routes, Route, Outlet, Link } from "react-router-dom";
 import Connect from './Connect';
+import ConnectArweave from './ConnectArweave';
 
 import styles from "./TopLayout.module.css"
 import Personal from './Personal';
@@ -47,6 +48,10 @@ export default function TopLayout() {
 
                     <Menu.Item>
                         <Connect />
+                    </Menu.Item>
+
+                    <Menu.Item>
+                        <ConnectArweave />
                     </Menu.Item>
                 </Menu>
             </Header>

@@ -6,6 +6,7 @@ import { useLocation } from 'react-router-dom';
 import { addToIpfs } from '../../../service/ipfs-service';
 import { mintNFT } from '../../../service/nft-service';
 import { messageBox } from '../../../service/message-service';
+import { storeMeta, storeArticle } from '../../../service/arweave-service';
 
 const { Header, Content, Footer } = Layout;
 
@@ -70,11 +71,12 @@ const Example = () => {
 
   }
   const mintArticle = async () => {
-    let uri = await addToIpfs(content);
+    let uri = await storeMeta(content);
     messageBox("success", "", uri)
     let meta = { name: title, description: title, type: "article", uri }
     let entity = JSON.stringify(meta)
-    let tokenURI = await addToIpfs(entity);
+    // let tokenURI = await addToIpfs(entity);
+    let tokenURI = await storeArticle(entity);
     messageBox("success", "", tokenURI)
     let {success, tokenId} = await mintNFT(tokenURI)
     if (success) {
